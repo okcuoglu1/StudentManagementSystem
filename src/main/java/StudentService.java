@@ -38,4 +38,14 @@ public class StudentService {
         repository.delete(id);
     }
 
+    //17-id ile ogrenci getirme
+    public Student getStudentById(int id){
+        Student student = repository.findStudentById(id);
+        return  student;
+
+
+    }
+
+
+
 }
