@@ -4,12 +4,14 @@ import java.util.Scanner;
 Proje:Student Management System
      -1-Herhangi bir eğitim kurumu için öğrenci yönetim uygulaması geliştiriniz.
      -2-Kullanıcı
-               -öğrenci kayıt
-               -öğrenci veya öğrencileri görüntüleme
-               -id ile öğrenci güncelleme
-               -id ile öğrenci silme
+               -C:create:öğrenci kayıt
+               -R:read:öğrenci veya öğrencileri görüntüleme
+               -U:update: id ile öğrenci güncelleme
+               -D:delete: id ile öğrenci silme
+               -R: ad-soyad ile öğrenci filtreleme
        işlemlerini yapabilmeli.
      -3-öğrenci:id,name,lastname,city,age özelliklerine sahiptir.
+ÖDEV:Course Management System
  */
 public class Runner {
     public static void main(String[] args) {
@@ -33,6 +35,7 @@ public class Runner {
             System.out.println("3-Öğrenci Güncelle");
             System.out.println("4-Öğrenci Sil");
             System.out.println("5-Öğrenci Bul");
+            System.out.println("6-Ad veya Soyad ile Öğrenci Filtrele");
             System.out.println("0-ÇIKIŞ");
             System.out.println("İşlem seçiniz: ");
             select= inp.nextInt();
@@ -47,7 +50,7 @@ public class Runner {
                     break;
                 case 3:
                     id=getId(inp);
-                    //güncelleme
+                    service.updateStudent(id);
                     break;
                 case 4:
                     id=getId(inp);
@@ -55,7 +58,15 @@ public class Runner {
                     break;
                 case 5:
                     id=getId(inp);
-                    //öğr bulma
+                    Student student=service.getStudentById(id);
+                    if(student==null){
+                        System.out.println("Öğrenci bulunamadı.");
+                    }else {
+                        System.out.println(student);
+                    }
+                    break;
+                case 6:
+                    service.listStudentsByNameOrLastname();
                     break;
                 case 0:
                     System.out.println("İyi günler...");
